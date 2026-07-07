@@ -142,8 +142,8 @@ vercel --prod
 
 | | |
 |---|---|
-| **Sepolia contract** | _TBD — see deploy step above_ |
-| **Live demo** | _TBD — Vercel URL_ |
+| **Sepolia contract** | [`0xa9B609Da313d22382ba9d5dEb56cB978BDA0fe09`](https://sepolia.etherscan.io/address/0xa9B609Da313d22382ba9d5dEb56cB978BDA0fe09) |
+| **Live demo** | _Vercel URL coming soon_ |
 | **Network** | Ethereum Sepolia (chainId `11155111`) |
 
 ## 🧪 Testing
