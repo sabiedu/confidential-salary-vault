@@ -45,7 +45,7 @@ Composable privacy isn't a feature — it's the unlock for confidential on-chain
 🔧 Stack: Solidity + FHEVM · React + Zama SDK · deployed on Sepolia testnet
 🔒 Full FHE API exercised: fromExternal, add/sub/mul/div, comparison, select, makePubliclyDecryptable, ACL
 📂 Code: https://github.com/sabiedu/confidential-salary-vault
-🚀 Live demo: [DEMO_URL]
+🚀 Live demo: https://salary.sabiedu.online
 📜 Contract: https://sepolia.etherscan.io/address/0xa9B609Da313d22382ba9d5dEb56cB978BDA0fe09
 
 **8/8**
@@ -53,6 +53,6 @@ Confidential Salary Vault — prove the total. Protect the individual. Built wit
 
 We're shipping the future of private on-chain payroll. 🚀
 
-🔗 https://github.com/sabiedu/confidential-salary-vault
+🔗 https://github.com/sabiedu/confidential-salary-vault · https://salary.sabiedu.online
 
 ---

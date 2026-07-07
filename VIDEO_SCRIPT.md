@@ -7,7 +7,7 @@
 - **Total target:** ~2:45–3:00
 - **Tone:** confident, demo-forward, light on jargon, heavy on the "wow".
 - **Setup before recording:** have the dApp open, a funded Sepolia wallet connected as **owner (HR)**, and 2 extra wallets imported as **employees** so you can switch. Keep MetaMask on Sepolia.
-- **On-screen:** screen-recording of the live dApp (`DEMO_URL`). Cut between the speaker and the screen.
+- **On-screen:** screen-recording of the live dApp (`https://salary.sabiedu.online`). Cut between the speaker and the screen.
 
 ---
 
