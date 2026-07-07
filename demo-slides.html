@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confidential Salary Vault — Pitch Deck</title>
+    <style>
+      :root {
+        --bg: #070a12;
+        --panel: #10172a;
+        --border: #1e2a47;
+        --text: #e7ecf7;
+        --dim: #94a2c4;
+        --faint: #5d6b8c;
+        --brand: #5b8cff;
+        --brand2: #7cf0c8;
+        --accent: #b07cff;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { height: 100%; }
+      body {
+        background:
+          radial-gradient(1100px 600px at 80% -10%, rgba(91,140,255,.16), transparent 60%),
+          radial-gradient(900px 500px at -10% 10%, rgba(124,240,200,.1), transparent 55%),
+          var(--bg);
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, sans-serif;
+        overflow: hidden;
+      }
+      .deck { position: relative; height: 100vh; width: 100vw; }
+      .slide {
+        position: absolute; inset: 0;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 6vh 8vw;
+      }
+      .slide.active { display: flex; animation: fade .35s ease; }
+      @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+      .pill {
+        display: inline-flex; gap: 8px; align-items: center;
+        border: 1px solid var(--border); background: var(--panel);
+        padding: 6px 14px; border-radius: 999px; font-size: 14px; color: var(--dim);
+      }
+      .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand2); box-shadow: 0 0 12px var(--brand2); }
+      h1 {
+        font-size: clamp(34px, 6vw, 64px); line-height: 1.04; letter-spacing: -.02em;
+        margin: 22px 0 14px; max-width: 16ch;
+      }
+      .grad { background: linear-gradient(100deg, var(--brand), var(--brand2) 60%, var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      h2 { font-size: clamp(26px, 4vw, 40px); letter-spacing: -.01em; margin-bottom: 18px; }
+      p.lead { color: var(--dim); font-size: clamp(16px, 2vw, 20px); max-width: 60ch; line-height: 1.55; }
+      .sub { color: var(--faint); margin-top: 18px; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
+
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 16px; margin-top: 30px; width: min(900px, 92vw); }
+      .feat { border: 1px solid var(--border); background: linear-gradient(180deg, var(--panel), #0c111d); border-radius: 16px; padding: 18px; text-align: left; }
+      .feat .k { font-family: ui-monospace, monospace; color: var(--brand2); font-size: 14px; }
+      .feat .d { color: var(--dim); font-size: 13.5px; margin-top: 6px; line-height: 1.45; }
+
+      .flow { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center; margin-top: 26px; }
+      .step { border: 1px solid var(--border); background: var(--panel); border-radius: 12px; padding: 12px 16px; font-size: 14px; color: var(--text); }
+      .step small { color: var(--faint); display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
+      .arrow { color: var(--brand); font-size: 22px; }
+
+      .big { font-size: clamp(54px, 10vw, 110px); font-weight: 800; letter-spacing: -.03em; background: linear-gradient(100deg, var(--brand2), var(--brand)); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1; }
+      .compare { display: flex; gap: 28px; margin-top: 26px; flex-wrap: wrap; justify-content: center; }
+      .col { border: 1px solid var(--border); border-radius: 16px; padding: 22px 26px; background: var(--panel); min-width: 240px; }
+      .col .h { font-size: 13px; color: var(--faint); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+      .col.lock { border-color: color-mix(in srgb, var(--brand) 40%, var(--border)); }
+      .tag-ok { color: var(--brand2); }
+      .tag-no { color: #ff8b8b; }
+
+      .nav { position: fixed; bottom: 18px; right: 22px; display: flex; gap: 10px; align-items: center; color: var(--faint); font-size: 13px; }
+      .nav button { appearance: none; border: 1px solid var(--border); background: var(--panel); color: var(--text); width: 38px; height: 38px; border-radius: 10px; font-size: 18px; cursor: pointer; }
+      .nav button:hover { border-color: var(--brand); }
+      .counter { position: fixed; bottom: 26px; left: 24px; color: var(--faint); font-family: ui-monospace, monospace; font-size: 13px; }
+      .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+      .logo svg { width: 34px; height: 34px; }
+      a { color: var(--brand); }
+    </style>
+  </head>
+  <body>
+    <div class="deck" id="deck">
+
+      <!-- 1. Title -->
+      <section class="slide active">
+        <div class="logo">
+          <svg viewBox="0 0 64 64" fill="none"><rect width="64" height="64" rx="14" fill="#0b0f1a"/><path d="M32 6 54 16v14c0 13-9 22-22 28C19 52 10 43 10 30V16L32 6Z" fill="#1b2440" stroke="#5b8cff" stroke-width="2"/><path d="M32 20v22M24 26h16M24 36h16" stroke="#7cf0c8" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="32" r="3.5" fill="#7cf0c8"/></svg>
+          <span>Confidential Salary Vault</span>
+        </div>
+        <span class="pill" style="margin-top: 26px"><span class="dot"></span> Fully Homomorphic Payroll · Zama FHEVM</span>
+        <h1>Prove the total. <br /><span class="grad">Protect every salary.</span></h1>
+        <p class="lead">A payroll vault where salaries live on-chain as encrypted ciphertext — and the contract sums and audits them without ever decrypting a single value.</p>
+        <div class="sub">#ZamaDeveloperProgram · Ethereum Sepolia</div>
+      </section>
+
+      <!-- 2. Problem -->
+      <section class="slide">
+        <span class="pill">The problem</span>
+        <h2 class="grad">To prove a payroll total…<br />you expose every salary?</h2>
+        <p class="lead">Today, verifying a company's total payroll to an auditor or investor means revealing everyone's individual pay. The most sensitive number in the company, laid bare — just to prove a sum.</p>
+      </section>
+
+      <!-- 3. The primitive -->
+      <section class="slide">
+        <span class="pill">The primitive</span>
+        <h2>What if the contract could <span class="grad">compute on ciphertext?</span></h2>
+        <p class="lead">Fully Homomorphic Encryption lets a smart contract add, multiply and compare numbers while they stay encrypted. Zama FHEVM brings that to the EVM.</p>
+        <div class="grid">
+          <div class="feat"><div class="k">FHE.fromExternal</div><div class="d">Encrypted inputs with a zero-knowledge proof — the contract never sees plaintext.</div></div>
+          <div class="feat"><div class="k">FHE.add / mul / div</div><div class="d">Homomorphic arithmetic: sum salaries, compute a bonus — all on ciphertext.</div></div>
+          <div class="feat"><div class="k">FHE.lt + select</div><div class="d">Encrypted comparison & conditional — an overflow guard built from FHE.</div></div>
+          <div class="feat"><div class="k">makePubliclyDecryptable</div><div class="d">Reveal ONLY the total — salaries stay encrypted. The audit primitive.</div></div>
+        </div>
+      </section>
+
+      <!-- 4. How it works -->
+      <section class="slide">
+        <span class="pill">How it works</span>
+        <h2>The confidential payroll flow</h2>
+        <div class="flow">
+          <div class="step"><small>HR</small>encrypt salary+perf<br /><span style="color:var(--brand2);font-size:12px">in the browser</span></div>
+          <span class="arrow">→</span>
+          <div class="step"><small>on-chain</small>verify + store<br /><span style="color:var(--brand2);font-size:12px">ciphertext only</span></div>
+          <span class="arrow">→</span>
+          <div class="step"><small>homomorphic</small>sum into total<br /><span style="color:var(--brand2);font-size:12px">never decrypted</span></div>
+          <span class="arrow">→</span>
+          <div class="step"><small>audit</small>reveal the total<br /><span style="color:var(--brand2);font-size:12px">salaries stay hidden</span></div>
+        </div>
+        <p class="lead" style="margin-top: 30px">Each employee decrypts only their own salary &amp; payout via a per-user ACL. Nobody else is allowed.</p>
+      </section>
+
+      <!-- 5. Killer feature -->
+      <section class="slide">
+        <span class="pill">The killer feature</span>
+        <h2>Reveal the total. <span class="grad">Keep every salary.</span></h2>
+        <div class="big">15,000</div>
+        <div class="sub" style="margin-top: 8px">total payroll · publicly verifiable on-chain</div>
+        <div class="compare">
+          <div class="col lock"><div class="h">Total</div><div class="tag-ok">✓ decrypts publicly</div></div>
+          <div class="col"><div class="h">Alice's salary</div><div class="tag-no">✗ stays encrypted</div></div>
+          <div class="col"><div class="h">Bob's salary</div><div class="tag-no">✗ stays encrypted</div></div>
+          <div class="col"><div class="h">Carol's salary</div><div class="tag-no">✗ stays encrypted</div></div>
+        </div>
+      </section>
+
+      <!-- 6. Payday under encryption -->
+      <section class="slide">
+        <span class="pill">Payday</span>
+        <h2>Computed <span class="grad">entirely under encryption</span></h2>
+        <div class="step" style="font-size: 20px; margin-top: 20px; padding: 18px 26px"><small>formula</small>payout = salary + ( salary × performance ÷ 100 )</div>
+        <p class="lead" style="margin-top: 26px">That's FHE.mul → FHE.div → FHE.add — plus an encrypted overflow guard from FHE.lt + FHE.select. The employee learns their payout; nobody else does.</p>
+      </section>
+
+      <!-- 7. Tech + close -->
+      <section class="slide">
+        <span class="pill">Built with</span>
+        <h2>Shipping <span class="grad">private on-chain finance</span></h2>
+        <div class="grid" style="max-width: 760px">
+          <div class="feat"><div class="k">Solidity + FHEVM</div><div class="d">Confidential contract on Ethereum Sepolia.</div></div>
+          <div class="feat"><div class="k">React + Zama SDK</div><div class="d">wagmi + @zama-fhe/react-sdk for encrypt &amp; decrypt.</div></div>
+          <div class="feat"><div class="k">Full FHE API</div><div class="d">fromExternal, arithmetic, comparison, ACL, public decrypt.</div></div>
+          <div class="feat"><div class="k">9/9 tests green</div><div class="d">Onboarding, ACL, homomorphic reveal, payday — all verified.</div></div>
+        </div>
+        <p class="lead" style="margin-top: 30px"><strong>Confidential Salary Vault</strong> — prove the total. Protect the individual.</p>
+        <div class="sub">#ZamaDeveloperProgram · @zama_fhe</div>
+      </section>
+
+    </div>
+
+    <div class="counter"><span id="cur">1</span> / <span id="tot">7</span></div>
+    <div class="nav">
+      <button id="prev" aria-label="Previous">‹</button>
+      <button id="next" aria-label="Next">›</button>
+    </div>
+
+    <script>
+      const slides = document.querySelectorAll(".slide");
+      const cur = document.getElementById("cur");
+      document.getElementById("tot").textContent = slides.length;
+      let i = 0;
+      function show(n) {
+        i = (n + slides.length) % slides.length;
+        slides.forEach((s, k) => s.classList.toggle("active", k === i));
+        cur.textContent = i + 1;
+      }
+      document.getElementById("next").onclick = () => show(i + 1);
+      document.getElementById("prev").onclick = () => show(i - 1);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === " ") show(i + 1);
+        if (e.key === "ArrowLeft") show(i - 1);
+        if (e.key === "Home") show(0);
+        if (e.key === "End") show(slides.length - 1);
+      });
+    </script>
+  </body>
+</html>
